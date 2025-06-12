@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "node --trace-warnings --watch --env-file=env/.env src/app.js",
+    "db:migrate:up": "npx sequelize-cli db:migrate",
+    "db:migrate:down": "npx sequelize-cli db:migrate:undo",
+    "db:seed": "npx sequelize-cli db:seed:all"
   },
   "repository": {
     "type": "git",
@@ -15,5 +18,17 @@
     "url": "https://github.com/Alejandro-VH/DSM-Catedra-2/issues"
   },
   "homepage": "https://github.com/Alejandro-VH/DSM-Catedra-2#readme",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "sequelize": "^6.37.7",
+    "sequelize-cli": "^6.6.3",
+    "sqlite3": "^5.1.7"
+  },
+  "devDependencies": {
+    "morgan": "^1.10.0"
+  }
 }

@@ -1,5 +1,5 @@
-// const {DataTypes, Model} = require("sequelize");
-// const db = require("../config/database");
+const {DataTypes, Model} = require("sequelize");
+const db = require("../config/database");
 
 class User extends Model {
     static id;
@@ -12,24 +12,24 @@ class User extends Model {
 User.init(
     {
         id: {
-            Type: DataTypes.INTEGER,
+            type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true,
         },
         name: {
-            Type: DataTypes.STRING,
+            type: DataTypes.STRING,
             allowNull: false,
         },
         last_name: {
-            Type: DataTypes.STRING,
+            type: DataTypes.STRING,
             allowNull: false,
         },
         email: {
-            Type: DataTypes.STRING,
+            type: DataTypes.STRING,
             allowNull: false,
         },
         password: {
-            Type: DataTypes.STRING,
+            type: DataTypes.STRING,
             allowNull: false,
         }
     },

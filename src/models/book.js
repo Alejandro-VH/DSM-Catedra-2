@@ -1,12 +1,12 @@
-// const {DataTypes, Model} = require("sequelize");
-// const db = require("../config/database");
+const {DataTypes, Model} = require("sequelize");
+const db = require("../config/database");
 
 class Book extends Model {
     static id;
     static title;
     static author;
     static genre;
-    static publish_date;
+    static publication_date;
     static available;
     static deleted;
 }
@@ -19,27 +19,27 @@ Book.init(
             autoIncrement: true,
         },
         title: {
-            Type: DataTypes.STRING,
+            type: DataTypes.STRING,
             allowNull: false,
         },
         author: {
-            Type: DataTypes.STRING,
+            type: DataTypes.STRING,
             allowNull: false,
         },
         genre: {
-            Type: DataTypes.STRING,
+            type: DataTypes.STRING,
             allowNull: false,
         },
-        publish_date: {
+        publication_date: {
             type: DataTypes.DATEONLY,
             allowNull: false,
         },
         available: {
-            type: DataTypes.Boolean,
+            type: DataTypes.BOOLEAN,
             allowNull: false,
         },
         deleted: {
-            type: DataTypes.Boolean,
+            type: DataTypes.BOOLEAN,
             allowNull: false,
         }
     },

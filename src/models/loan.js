@@ -1,5 +1,5 @@
-// const {DataTypes, Model} = require("sequelize");
-// const db = require("../config/database");
+const {DataTypes, Model} = require("sequelize");
+const db = require("../config/database");
 
 class Loan extends Model {
     static id;
@@ -12,16 +12,15 @@ class Loan extends Model {
 
 Loan.init(
     {
-
         id: {
-            Type: DataTypes.INTEGER,
+            type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true,
         },
         user_id: {
             type: DataTypes.INTEGER,
             references: {
-                model: 'User',
+                model: 'user',
                 key: 'id'
             },
             allowNull: false,
@@ -29,7 +28,7 @@ Loan.init(
         book_id: {
             type: DataTypes.INTEGER,
             references: {
-                model: 'Book',
+                model: 'book',
                 key: 'id'
             },
             allowNull: false,
@@ -53,6 +52,11 @@ Loan.init(
         modelName: "Loan",
         timestamps: true,
 });
+
+Loan.associate = (models) => {
+    Loan.hasMany(models.User, { foreignKey: 'user_id' });
+    Loan.hasMany(models.Book, { foreignKey: 'book_id' });
+}
 
 Loan.prototype.toJSON = function () {
     const values = { ...this.get() };

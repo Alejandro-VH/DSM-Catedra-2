@@ -14,10 +14,11 @@ class Server {
 
         this.server = require('http').createServer(this.app);
 
+        // No aplicado para dejar sin prefijo las rutas y coincida con el archivo entregado
         this.paths = {
-            books: '/api/book',
-            loans: '/api/loan',
-            users: '/api/user'
+            //books: '/api/book',
+            //loans: '/api/loan',
+            //users: '/api/user'
         };
 
         // Database
@@ -37,7 +38,8 @@ class Server {
         try {
         await db.authenticate();
         await User.sync({force: false});
-        await Role.sync({force:false});
+        await Book.sync({force: false});
+        await Loan.sync({force: false});
         console.log('Database connected successfully');
         }catch(error){
             console.log(error);
@@ -57,9 +59,9 @@ class Server {
     }
 
     routes() {
-        this.app.use(this.paths.books, require("./routes/book.routes"));
-        this.app.use(this.paths.loans, require('./routes/loan.routes'));
-        this.app.use(this.paths.users, require('./routes/user.routes'));
+        this.app.use(require("./routes/book.routes"));
+        this.app.use(require('./routes/loan.routes'));
+        this.app.use(require('./routes/user.routes'));
     }
 
     listen() {
